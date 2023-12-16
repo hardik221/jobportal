@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Document(collection = "user")
 @Getter
@@ -23,8 +24,7 @@ public class User {
     private String contactNo;
     private String password;
     private boolean isBlocked;
-    private Timestamp lastLogin;
-
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    private Instant lastLogin;
+    private Instant createdAt;
+    private Instant updatedAt;
 }
