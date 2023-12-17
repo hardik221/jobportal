@@ -15,6 +15,7 @@ public class RecruiterRepositoryImpl {
     public long getRecordCount() {
         return recruiterRepository.findAll().size();
     }
+
     public String createRecruiter(Recruiter recruiter) {
         recruiter.setCreatedAt(Instant.now());
         recruiter.setUpdatedAt(Instant.now());

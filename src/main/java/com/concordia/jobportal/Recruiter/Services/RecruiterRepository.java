@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import java.util.Optional;
 
-public interface RecruiterRepository extends MongoRepository<Recruiter, Integer> {
+public interface RecruiterRepository extends MongoRepository<Recruiter, Long> {
 //    List<Recruiter> findAll();
 
     @Query("{'email' : ?0, 'password' : ?1}")
