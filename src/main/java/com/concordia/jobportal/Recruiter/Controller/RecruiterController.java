@@ -2,6 +2,8 @@ package com.concordia.jobportal.Recruiter.Controller;
 
 import com.concordia.jobportal.Recruiter.Models.Recruiter;
 import com.concordia.jobportal.Recruiter.Services.RecruiterRepositoryImpl;
+import com.concordia.jobportal.common.SequenceGenerator;
+import com.concordia.jobportal.common.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,9 @@ public class RecruiterController {
     @Autowired
     RecruiterRepositoryImpl recruiterRepositoryImpl;
 
+    @Autowired
+    SequenceGenerator sequenceGenerator;
+
     @GetMapping("/hr/")
     public long getUserData() {
         return recruiterRepositoryImpl.getRecordCount();
@@ -21,6 +26,7 @@ public class RecruiterController {
 
     @PostMapping("/hr/register")
     public String createRecruiter(@RequestBody Recruiter recruiter) {
+        recruiter.setId(sequenceGenerator.generateSequence(Type.RECRUITER.toString()));
         return recruiterRepositoryImpl.createRecruiter(recruiter);
     }
 

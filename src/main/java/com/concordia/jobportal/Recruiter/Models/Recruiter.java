@@ -16,7 +16,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class Recruiter {
     @Id
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
