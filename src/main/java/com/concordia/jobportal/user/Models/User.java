@@ -7,7 +7,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.sql.Timestamp;
 import java.time.Instant;
 
 @Document(collection = "user")
@@ -17,7 +16,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class User {
     @Id
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
