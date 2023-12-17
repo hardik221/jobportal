@@ -2,14 +2,10 @@ package com.concordia.jobportal.user.Services;
 
 import com.concordia.jobportal.user.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 
 
-import javax.swing.text.html.Option;
-import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -28,7 +24,18 @@ public class UserRepositoryImpl {
         return "User Created Successfully";
     }
 
-    public Optional<User> loginUser(User user) {
-        return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+    public String loginUser(User user) {
+        Optional<User> optional = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        String message = "";
+        if(optional.isPresent()) {
+            User loggedInUser = optional.get();
+            loggedInUser.setLastLogin(Instant.now());
+            userRepository.save(loggedInUser); // Assuming you want to save the updated user.
+            message = "Login Success";
+        } else {
+            message = "Login Fail";
+        }
+
+        return message;
     }
 }
